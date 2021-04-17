@@ -1,0 +1,29 @@
+{
+  "name": "sub_dicoding_bookshelf_api",
+  "version": "1.0.0",
+  "description": "Bookshelf API for Dicoding Submission",
+  "main": "server.js",
+  "scripts": {
+    "start": "cross-env PORT=5000 HOST=localhost node ./server.js",
+    "develop": "cross-env PORT=5000 HOST=localhost nodemon ./server.js"
+  },
+  "keywords": [
+    "dicoding",
+    "back-end",
+    "api",
+    "submission"
+  ],
+  "author": "Bayu Seno Ariefyanto",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/hapi": "^20.1.2",
+    "laabr": "^6.1.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7"
+  }
+}
