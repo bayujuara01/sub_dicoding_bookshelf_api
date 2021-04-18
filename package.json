@@ -4,7 +4,7 @@
   "description": "Bookshelf API for Dicoding Submission",
   "main": "server.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production PORT=5000 HOST=172.31.32.27 node ./server.js",
+    "start": "cross-env NODE_ENV=production PORT=5000 HOST=localhost node ./server.js",
     "develop": "cross-env PORT=5000 HOST=localhost nodemon ./server.js"
   },
   "keywords": [
