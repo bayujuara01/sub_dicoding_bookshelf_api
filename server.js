@@ -4,14 +4,22 @@ const laabr = require('laabr');
 const PORT = process.env.PORT ? process.env.PORT : 5000;
 const HOST = process.env.HOST ? process.env.HOST : 'localhost';
 
+const BooksService = require('./src/services/BooksServices');
+const books = require('./src/api/books');
+
 const server = hapi.server({
   port: PORT,
-  host: HOST
+  host: HOST,
+  routes: {
+    cors: {
+      origin: ['*']
+    }
+  }
 });
 
 const logOptions = {
   formats: {
-    onPostStart: ':time[utc] :level :message',
+    onPostStart: `:time[utc] :level :message at ${server.info.uri}`,
     response:
       ':time[iso] :method :remoteAddress :url :status :payload (:responseTime ms)'
   },
@@ -20,19 +28,19 @@ const logOptions = {
   colored: true
 };
 
-server.route([
-  {
-    method: '*',
-    path: '/response',
-    handler: () => 'Hello World'
-  }
-]);
-
 (async () => {
+  const booksService = new BooksService();
   try {
     await server.register({
       plugin: laabr,
       options: logOptions
+    });
+
+    await server.register({
+      plugin: books,
+      options: {
+        service: booksService
+      }
     });
 
     await server.start();

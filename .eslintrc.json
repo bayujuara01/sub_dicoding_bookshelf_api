@@ -14,6 +14,10 @@
         "no-console": "off",
         "linebreak-style": "off",
         "no-underscore-dangle": "off",
-        "comma-dangle": "off"
+        "comma-dangle": "off",
+        "no-unused-vars":"off",
+        "class-methods-use-this":"off",
+        "object-curly-newline":"off",
+        "eqeqeq":"off"
     }
 }
