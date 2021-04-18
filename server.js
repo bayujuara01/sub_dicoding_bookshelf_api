@@ -30,7 +30,7 @@ const logOptions = {
 (async () => {
   const booksService = new BooksService();
   try {
-    if (process.env.NODE_ENV == 'development') {
+    if (process.env.NODE_ENV !== 'production') {
       await server.register({
         plugin: laabr,
         options: logOptions
