@@ -62,8 +62,6 @@ class BookService {
   getBookByQuery({ name, reading, finished }) {
     let books = [];
 
-    console.log(`isReading ${reading}, isFinished: ${finished}`);
-
     if (!isUndefined(reading)) {
       if (reading > 1) {
         books = this._books;
