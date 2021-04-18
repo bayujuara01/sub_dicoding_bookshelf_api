@@ -20,8 +20,7 @@ const server = hapi.server({
 const logOptions = {
   formats: {
     onPostStart: `:time[utc] :level :message at ${server.info.uri}`,
-    response:
-      ':time[iso] :method :remoteAddress :url :status :payload (:responseTime ms)'
+    response: ':time[iso] :method :remoteAddress :url :status :payload (:responseTime ms)'
   },
   tokens: { start: () => '[start]' },
   indent: 0,
@@ -31,10 +30,12 @@ const logOptions = {
 (async () => {
   const booksService = new BooksService();
   try {
-    await server.register({
-      plugin: laabr,
-      options: logOptions
-    });
+    if (process.env.NODE_ENV == 'development') {
+      await server.register({
+        plugin: laabr,
+        options: logOptions
+      });
+    }
 
     await server.register({
       plugin: books,
@@ -44,7 +45,7 @@ const logOptions = {
     });
 
     await server.start();
-    console.log('Server started successfully');
+    console.log(`Server started successfully at ${server.info.uri}`);
   } catch (err) {
     console.error(err);
   }
